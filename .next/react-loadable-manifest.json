@@ -1,85 +1,78 @@
 {
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/aiff/AiffLoader.js -> ./AiffParser.js": {
-    "id": 4743,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/aiff/AiffLoader.js -> ./AiffParser.js",
     "files": [
-      "static/chunks/168.0235248c44dcb8c2.js",
-      "static/chunks/743.217e65b5923d1a28.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_ai-eee814.js"
     ]
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/apev2/Apev2Loader.js -> ./APEv2Parser.js": {
-    "id": 8859,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/apev2/Apev2Loader.js -> ./APEv2Parser.js",
     "files": []
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/asf/AsfLoader.js -> ./AsfParser.js": {
-    "id": 3684,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/asf/AsfLoader.js -> ./AsfParser.js",
     "files": [
-      "static/chunks/684.24bec272fb6f4964.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_as-f2b9c2.js"
     ]
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/dsdiff/DsdiffLoader.js -> ./DsdiffParser.js": {
-    "id": 2636,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/dsdiff/DsdiffLoader.js -> ./DsdiffParser.js",
     "files": [
-      "static/chunks/168.0235248c44dcb8c2.js",
-      "static/chunks/255.b7e1056691012ca0.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_ds-ce1edd.js"
     ]
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/dsf/DsfLoader.js -> ./DsfParser.js": {
-    "id": 3634,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/dsf/DsfLoader.js -> ./DsfParser.js",
     "files": [
-      "static/chunks/168.0235248c44dcb8c2.js",
-      "static/chunks/634.cac837d885d5b232.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_ds-53aeb1.js"
     ]
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/flac/FlacLoader.js -> ./FlacParser.js": {
-    "id": 9881,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/flac/FlacLoader.js -> ./FlacParser.js",
     "files": [
-      "static/chunks/168.0235248c44dcb8c2.js",
-      "static/chunks/881.96956e577559e1ee.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_fl-ffb55d.js"
     ]
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/matroska/MatroskaLoader.js -> ./MatroskaParser.js": {
-    "id": 7131,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/matroska/MatroskaLoader.js -> ./MatroskaParser.js",
     "files": [
-      "static/chunks/131.244b1e409964be5c.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_ma-1c45b4.js"
     ]
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/mp4/Mp4Loader.js -> ./MP4Parser.js": {
-    "id": 6379,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/mp4/Mp4Loader.js -> ./MP4Parser.js",
     "files": [
-      "static/chunks/379.be871a792f14cf9e.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_mp-eda8ea.js"
     ]
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/mpeg/MpegLoader.js -> ./MpegParser.js": {
-    "id": 9253,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/mpeg/MpegLoader.js -> ./MpegParser.js",
     "files": [
-      "static/chunks/168.0235248c44dcb8c2.js",
-      "static/chunks/253.eeda1898eba49452.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_mp-daa78e.js"
     ]
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/musepack/MusepackLoader.js -> ./MusepackParser.js": {
-    "id": 246,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/musepack/MusepackLoader.js -> ./MusepackParser.js",
     "files": [
-      "static/chunks/168.0235248c44dcb8c2.js",
-      "static/chunks/246.40fc8a4f68a5ec14.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_mu-b79c23.js"
     ]
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/ogg/OggLoader.js -> ./OggParser.js": {
-    "id": 7088,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/ogg/OggLoader.js -> ./OggParser.js",
     "files": [
-      "static/chunks/88.3f246698ccf3870a.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_og-825809.js"
     ]
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/wav/WaveLoader.js -> ./WaveParser.js": {
-    "id": 3375,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/wav/WaveLoader.js -> ./WaveParser.js",
     "files": [
-      "static/chunks/168.0235248c44dcb8c2.js",
-      "static/chunks/375.ddb11d1151cc8f61.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_wa-6b75db.js"
     ]
   },
   "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/wavpack/WavPackLoader.js -> ./WavPackParser.js": {
-    "id": 142,
+    "id": "../node_modules/.pnpm/music-metadata@10.7.0/node_modules/music-metadata/lib/wavpack/WavPackLoader.js -> ./WavPackParser.js",
     "files": [
-      "static/chunks/142.b428b55e3af44f9c.js"
+      "static/chunks/_app-pages-browser_node_modules_pnpm_music-metadata_10_7_0_node_modules_music-metadata_lib_wa-863744.js"
     ]
   }
 }

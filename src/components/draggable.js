@@ -5,7 +5,6 @@ import { parseBuffer } from 'music-metadata';
 import { DndContext } from '@dnd-kit/core';
 import { SortableContext, sortableKeyboardCoordinates, arrayMove, useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import AudioMotionAnalyzer from 'audiomotion-analyzer';
 import styles from './draggable.module.css';
 
 const SortableItem = ({ id, children }) => {
@@ -31,7 +30,22 @@ const MusicPlayer = () => {
   const audioRef = useRef(null);
   const [showPlaylist, setShowPlaylist] = useState(false);
   const [isShuffle, setIsShuffle] = useState(false);
-  const audioMotionRef = useRef(null);
+  const [lyrics, setLyrics] = useState('');
+  const [isLoop, setIsLoop] = useState(false);
+  const [isLoadingLyrics, setIsLoadingLyrics] = useState(false);
+
+  const handleLoop = () => {
+    setIsLoop((prevLoop) => !prevLoop);
+  };
+
+  const handleSongEnd = () => {
+    if (isLoop) {
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    } else {
+      setCurrentSongIndex((prevIndex) => (prevIndex + 1) % playlist.length);
+    }
+  };
 
   useEffect(() => {
     const loadPlaylist = async () => {
@@ -71,65 +85,11 @@ const MusicPlayer = () => {
     }
   }, [currentSongIndex, playlist]);
 
-
   useEffect(() => {
-    if (!audioMotionRef.current && audioRef.current) {
-      audioMotionRef.current = new AudioMotionAnalyzer(document.getElementById('visualizer'), {
-        source: audioRef.current,
-        "alphaBars": false,
-        "ansiBands": false,
-        "barSpace": 0.1,
-        "bgAlpha": "0",
-        "channelLayout": "single",
-        "colorMode": "gradient",
-        "fadePeaks": true,
-        "fftSize": 256,
-        "fillAlpha": 1,
-        "frequencyScale": "linear",
-        "gradient": "rainbow",
-        "gravity": 3.8,
-        "ledBars": true,
-        "linearAmplitude": true,
-        "linearBoost": 1.8,
-        "lineWidth": 4,
-        "loRes": false,
-        "lumiBars": false,
-        "maxDecibels": -25,
-        "maxFPS": 0,
-        "maxFreq": 8000,
-        "minDecibels": -85,
-        "minFreq": 100,
-        "mirror": 0,
-        "mode": 0,
-        "noteLabels": false,
-        "outlineBars": false,
-        "overlay": true,
-        "peakFadeTime": 750,
-        "peakHoldTime": 500,
-        "peakLine": true,
-        "radial": false,
-        "radialInvert": false,
-        "radius": 0.3,
-        "reflexAlpha": "0.3",
-        "reflexBright": "0.9",
-        "reflexFit": true,
-        "reflexRatio": 0.3,
-        "roundBars": false,
-        "showBgColor": true,
-        "showFPS": false,
-        "showPeaks": true,
-        "showScaleX": false,
-        "showScaleY": false,
-        "smoothing": 0.8,
-        "spinSpeed": 0,
-        "splitGradient": false,
-        "trueLeds": false,
-        "useCanvas": true,
-        "volume": 1,
-        "weightingFilter": ""
-      });
+    if (metadata && playlist[currentSongIndex]) {
+      fetchLyrics();
     }
-  }, [audioRef.current]);
+  }, [currentSongIndex, metadata, playlist]);
 
   const shufflePlaylist = () => {
     let shuffled = [...playlist];
@@ -138,10 +98,6 @@ const MusicPlayer = () => {
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     return shuffled;
-  };
-
-  const handleSongEnd = () => {
-    setCurrentSongIndex((prevIndex) => (prevIndex + 1) % playlist.length);
   };
 
   const handleNextSong = () => {
@@ -175,14 +131,43 @@ const MusicPlayer = () => {
     }
   };
 
+  const fetchLyrics = async () => {
+    setIsLoadingLyrics(true);
+    try {
+      const songNameWithoutExtension = playlist[currentSongIndex].name.replace(/\.m4a$/, '');
+      const artist = metadata.common.artist || 'Artiste inconnu';
+      const response = await fetch(`https://api.lyrics.ovh/v1/${artist}/${songNameWithoutExtension}`);
+      const data = await response.json();
+      if (!data.lyrics) {
+        setLyrics('Paroles non disponibles pour cette chanson.');
+      } else {
+        setLyrics(data.lyrics);
+      }
+    } catch (error) {
+      console.error('Erreur de récupération des paroles:', error);
+      setLyrics('Erreur lors de la récupération des paroles.');
+    } finally {
+      setIsLoadingLyrics(false);
+    }
+  };
+
+  const LyricsDisplay = ({ lyrics }) => {
+    return (
+      <div className="lyrics">
+        {lyrics.split('\n').map((line, index) => (
+          <p key={index}>{line}</p>
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div>
       <div className={styles.container}>
         <div className={styles.container1}>
-          
-            {metadata && (
-              <div className={styles.player}>
-                <div>
+          {metadata && (
+            <div className={styles.player}>
+              <div>
                 {metadata.common.picture?.[0] && (
                   <div>
                     <div
@@ -203,39 +188,36 @@ const MusicPlayer = () => {
                     </div>
                   </div>
                 )}
-                    <h2>{metadata.common.title || playlist[currentSongIndex].name}</h2>
-
-                </div>
-
-              </div>
-            )}
-
-
-            <div className={styles.controls}>
-              <audio autoPlay ref={audioRef} id="audioPlayer" controls onEnded={handleSongEnd}></audio>
-
-              <div className={styles.btn}>
-                <button onClick={handlePreviousSong}><img src="/back.svg" alt="back" /></button>
-                <button onClick={handleNextSong}><img src="/next.svg" alt="next" /></button>
-                <button onClick={handleShuffle} style={{ backgroundColor: isShuffle ? '#080808de' : '#1e1e1e85' }}>
-                  <img src="/shuffle.svg" alt="shuffle" />
-                </button>
-                <button onClick={() => setShowPlaylist(!showPlaylist)}><img src="/playlist.svg" alt="playlist" /></button>
+                <h2>{metadata.common.artist} - {metadata.common.title || playlist[currentSongIndex].name}</h2>
               </div>
             </div>
+          )}
 
-
+          <div className={styles.controls}>
+            <audio ref={audioRef} id="audioPlayer" preload="auto" controls onEnded={handleSongEnd}></audio>
+            <div className={styles.btn}>
+              <button onClick={handlePreviousSong}><img src="/back.svg" alt="back" /></button>
+              <button onClick={handleNextSong}><img src="/next.svg" alt="next" /></button>
+              <button onClick={fetchLyrics}>
+                <img src="/lyrics.svg" alt="lyrics" />
+              </button>
+              <button onClick={handleShuffle} style={{ backgroundColor: isShuffle ? '#080808de' : '#1e1e1e85' }}>
+                <img src="/shuffle.svg" alt="shuffle" />
+              </button>
+              <button onClick={() => setShowPlaylist(!showPlaylist)}><img src="/playlist.svg" alt="playlist" /></button>
+            </div>
+          </div>
         </div>
         <div className={styles.container2}>
           <div id="visualizer" className={styles.visualizer}>
-            
+            {isLoadingLyrics ? (
+              <p>Chargement des paroles...</p>
+            ) : (
+              <LyricsDisplay lyrics={lyrics} />
+            )}
           </div>
-
         </div>
       </div>
-
-
-      
 
       {showPlaylist && (
         <div className={styles.playlist}>
